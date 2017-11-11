@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans default-init-method="myInit" default-destroy-method="myDestroy">
+	<!-- <bean id="triangle" class="org.achievers.ganesh.Triangle" name="triangle-name" autowire="byName"> -->
+	<bean id="triangle" class="org.achievers.ganesh.Triangle" name="triangle-name">
+	<!-- <property name="type" value="Equilateral"></property>
+	<constructor-arg type = "int" value="11"></constructor-arg>
+	<constructor-arg index="0" value="Equilateral"></constructor-arg> -->
+		<!--Refers point1 bean -->
+		 <property name="p1" ref="point1"></property>
+		<property name="p2" ref="point2"> </property>
+		<property name="p3" ref="point3"> </property>
+		
+		<!-- <property name="pList">
+			<list>
+			<ref bean="point1"/>
+			<ref bean="point2"/>
+			<ref bean="point3"/>
+			</list>
+		</property>
+ -->	</bean>
+	
+	<bean id="point1" class="org.achievers.ganesh.Point">
+		<property name="x" value="${p1.x}"></property>
+		<property name="y" value="${p1.y}"></property>
+	</bean>
+	
+	<bean id="point2" class="org.achievers.ganesh.Point">
+				<property name="x" value="-20"></property>
+				<property name="y" value="0"></property>
+	</bean>
+	
+	<bean id="point3" class="org.achievers.ganesh.Point">
+				<property name="x" value="20"></property>
+				<property name="y" value="5"></property>
+	</bean>
+			
+	<alias name="triangle" alias="triangle-alias"/>
+	
+	<!-- <bean id="customer" class="org.achievers.ganesh.Customer">
+	<property name="ename" value="Ganesh"></property>
+	<property name="add">
+		<set>
+		<ref bean="address1"/>
+		<ref bean="address2"/>
+		</set>
+	</property>
+	</bean> -->
+	
+	<!-- <bean id="customer" class="org.achievers.ganesh.Customer">
+		<property name="ename" value="Ganesh"></property>
+		<property name="add1">
+			<map>
+				<entry key="1" value-ref="address1"></entry>
+			</map>
+		</property>
+	</bean> -->
+	
+	<bean id="address1" class="org.achievers.ganesh.Address">
+		<property name="city" value="Nashik"></property>
+		<property name="pin" value="411"></property>
+	</bean>
+	<bean id="address2" class="org.achievers.ganesh.Address">
+		<property name="city" value="Mumbai"></property>
+		<property name="pin" value="422"></property>
+	</bean>
+	<!-- <bean class="org.achievers.ganesh.BeanPostProcessorDemo"></bean> -->
+	<bean class="org.achievers.ganesh.BeanFactoryPP"></bean>
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="locations" value="pointProcConfig.properties"></property>
+	</bean>
+	<bean id="circle" class="org.achievers.ganesh.Circle">
+	<property name="center" ref="point1"></property>
+	</bean>
+</beans>
