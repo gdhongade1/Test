@@ -1,8 +1,11 @@
 package org.achievers.ganesh;
 
 public class Address {
+	
 private String city;
+
 private int pin;
+
 public String getCity() {
 	return city;
 }
